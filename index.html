@@ -8,6 +8,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     </head>
     <body>
+        <div class="sticky-note" id="stickyNoteClosed" onclick="toggleStickyNote(true)">
+            <img src="closedstickynote.png" alt="Closed Sticky Note">
+        </div>
+        <div class="sticky-note open" id="stickyNoteOpen" style="display: none;" onclick="toggleStickyNote(false)">
+            <img src="openstickynote.png" alt="Open Sticky Note">
+            <div class="sticky-note-text">
+                <p>Username: guest</p>
+                <p>Password: roblox2006</p>
+            </div>
+        </div>
+
         <div class="login-screen" id="loginScreen">
             <h1>Welcome to Robloxia</h1>
             <p>Username: <input type="text" id="username"></p>
@@ -40,7 +51,8 @@
                     <button class="close-btn" onclick="closeWindow('mailWindow')">X</button>
                 </div>
                 <div class="window-body">
-                    <ul id="emailList"></ul>
+                    <ul id="emailList">
+                    </ul>
                     <div id="emailContent" style="display: none;">
                         <button onclick="closeEmail()">Back To Inbox</button>
                         <p id="emailBody"></p>

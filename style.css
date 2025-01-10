@@ -1,3 +1,47 @@
+.sticky-note {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.sticky-note img {
+    width: 100px;
+}
+
+.sticky-note.open img {
+    width: 200px;
+}
+
+.sticky-note-text {
+    color: black;
+    font-size: 14px;
+    background-color: yellow;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+#emailList {
+    list-style: none;
+    padding: 0;
+}
+
+#emailList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#emailList img {
+    width: 20px;
+    margin-right: 10px;
+}
+
 * {
     margin: 0;
     padding: 0;

@@ -1,3 +1,16 @@
+function toggleStickyNote(isOpen) {
+    const closed = document.getElementById('stickyNoteClosed');
+    const open = document.getElementById('stickyNoteOpen');
+
+    if (isOpen) {
+        closed.style.display = 'none';
+        open.style.display = 'block';
+    } else {
+        closed.style.display = 'block';
+        open.style.display = 'none';
+    }
+}
+
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -33,9 +46,11 @@ document.querySelectorAll('.window').forEach((window) => {
 });
 
 // TODO: maybe add more emails and email icons or sum
-let emails = [
-    { subject: 'Welcome!', body: 'Thank you for using Robloxia Mail!' },
-    { subject: 'Special Offer!', body: 'Get a free item in the catalog today!' },
+const emails = [
+    { subject: 'Welcome!', body: 'Thank you for using Robloxia Mail!', icon: 'roblox.png' },
+    { subject: 'Special Offer!', body: 'Get a free item in the catalog today!', icon: 'roblox.png' },
+    { subject: 'Event Reminder', body: 'Don’t miss the Roblox 2006 Anniversary event.', icon: 'roblox.png'},
+    { subject: 'Upgrade Now!', body: 'Upgrade your account for premium benefits.', icon: 'roblox.png'}
 ];
 
 function openWindow(id) {
@@ -48,7 +63,7 @@ function closeWindow(id) {
 
 function loadEmails() {
     const emailList = document.getElementById('emailList');
-    emailList.innerHTML = emails.map((email, index) => `<li onclick="openEmail(${index})">${email.subject}</li>`).join('');
+    emailList.innerHTML = emails.map((email, index) => `<li onclick="openEmail(${index})"><img src="${email.icon}" alt="Email Icon">${email.subject}</li>`).join('');
 }
 
 function openEmail(index) {
