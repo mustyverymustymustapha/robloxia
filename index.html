@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Robloxia Emulator</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="login-screen" id="loginScreen">
+            <h1>Welcome to Robloxia</h1>
+            <p>Username: <input type="text" id="username"></p>
+            <p>Password: <input type="password" id="password"></p>
+            <button onclick="login()">Login</button>
+            <button class="secret-btn" onclick="showCredentials()">DO NOT OPEN</button>
+            <div id="credentials" style="display: none;">
+                <p>Username: guest</p>
+                <p>Password: roblox2006</p>
+            </div>
+        </div>
+
+        <div class="desktop" id="desktop" style="display: none;">
+            <!--I really don't think you can upload images in GH Codespaces so I'll upload them to the repo when done with the code-->
+            <img src="background.jpg" class="background">
+
+            <div class="icon" onlick="openWindow('mailWindow')">
+                <img src="icon_mail.png" alt="Mail Icon">
+                <p>Mail</p>
+            </div>
+
+            <div class="icon" onclick="openWindow('browserWindow')">
+                <img src="icon_browser.png" alt="Browser Icon">
+                <p>Wikipedia</p>
+            </div>
+
+            <div class="window" id="mailWindow">
+                <div class="window-header">
+                    <span>Inbox - Mail</span>
+                    <button class="close-btn" onclick="closeWindow('mailWindow')">X</button>
+                </div>
+                <div class="window-body">
+                    <ul id="emailList"></ul>
+                    <div id="emailContent" style="display: none;">
+                        <button onclick="closeEmail()">Back To Inbox</button>
+                        <p id="emailBody"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="window" id="browserWindow">
+                <div class="window-header">
+                    <span>Wikipedia</span>
+                    <button class="close-btn" onclick="closeWindow('browserWindow')">X</button>
+                </div>
+                <div class="window-body">
+                  <input type="text" id="searchQuery" placeholder="Search Wikipedia...">
+                  <button onclick="searchWikipedia()">Search</button>
+                  <div id="wikiResults"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
