@@ -1,3 +1,4 @@
+// Adjustments for sticky note toggling and hiding after login
 function toggleStickyNote(isOpen) {
     const closed = document.getElementById('stickyNoteClosed');
     const open = document.getElementById('stickyNoteOpen');
@@ -18,14 +19,22 @@ function login() {
     if (username === 'guest' && password === 'roblox2006') {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('desktop').style.display = 'block';
+        
+        // Hides sticky note permanently after login
+        document.getElementById('stickyNoteClosed').style.display = 'none';
+        document.getElementById('stickyNoteOpen').style.display = 'none';
     } else {
         alert('Incorrect credentials!');
     }
 }
 
-function showCredentials() {
-    document.getElementById('credentials').style.display = 'block';
+// Function to update the time bar
+function updateTimeBar() {
+    const now = new Date();
+    const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('currentTime').innerText = `5 August 2006 | ${formattedTime}`;
 }
+setInterval(updateTimeBar, 1000); // Update the time every second
 
 document.querySelectorAll('.window').forEach((window) => {
     const header = window.querySelector('.window-header');
@@ -34,7 +43,7 @@ document.querySelectorAll('.window').forEach((window) => {
         const offsetX = e.clientX - rect.left;
         const offsetY = e.clientY - rect.top;
 
-        document.onmousedown = function (event) {
+        document.onmousemove = function (event) {
             window.style.left = event.clientX - offsetX + 'px';
             window.style.top = event.clientY - offsetY + 'px';
         };
@@ -45,12 +54,11 @@ document.querySelectorAll('.window').forEach((window) => {
     };
 });
 
-// TODO: maybe add more emails and email icons or sum
 const emails = [
     { subject: 'Welcome!', body: 'Thank you for using Robloxia Mail!', icon: 'roblox.png' },
     { subject: 'Special Offer!', body: 'Get a free item in the catalog today!', icon: 'roblox.png' },
-    { subject: 'Event Reminder', body: 'Don’t miss the Roblox 2006 Anniversary event.', icon: 'roblox.png'},
-    { subject: 'Upgrade Now!', body: 'Upgrade your account for premium benefits.', icon: 'roblox.png'}
+    { subject: 'Event Reminder', body: 'Don’t miss the Roblox 2006 Anniversary event.', icon: 'roblox.png' },
+    { subject: 'Upgrade Now!', body: 'Upgrade your account for premium benefits.', icon: 'roblox.png' }
 ];
 
 function openWindow(id) {
@@ -85,8 +93,10 @@ async function searchWikipedia() {
     const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&origin=*`);
     const data = await response.json();
 
-    resultsDiv.innerHTML = data.query.search.map((result) => `<p><a href="https://en.wikipedia.org/wiki/${result.title}" target="_blank">${result.title}</a></p>`).join('');
+    resultsDiv.innerHTML = data.query.search.map(
+        (result) => `<p><b>${result.title}</b>: ${result.snippet}</p>`
+    ).join('');
 }
 
-// yay!!
+// Load emails on page load
 loadEmails();
